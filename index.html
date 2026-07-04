@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trébol | Entretenimiento Online</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1336822738646610');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1336822738646610&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --red:       #16A34A;
+      --red-dark:  #14532D;
+      --red-light: #4ADE80;
+      --black:     #0A0A0A;
+      --dark:      #111111;
+      --dark2:     #1A1A1A;
+      --white:     #FFFFFF;
+      --gray:      #AAAAAA;
+      --green:     #00C853;
+      --wa:        #25D366;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px 40px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(22,163,74,0.20) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(22,163,74,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Animated particles */
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--red);
+      opacity: 0;
+      animation: float-up linear infinite;
+    }
+    .particle:nth-child(1)  { left: 10%; animation-duration: 6s;  animation-delay: 0s;   width: 3px; height: 3px; }
+    .particle:nth-child(2)  { left: 25%; animation-duration: 8s;  animation-delay: 1s;   width: 5px; height: 5px; }
+    .particle:nth-child(3)  { left: 40%; animation-duration: 5s;  animation-delay: 2s; }
+    .particle:nth-child(4)  { left: 60%; animation-duration: 7s;  animation-delay: 0.5s; width: 3px; height: 3px; }
+    .particle:nth-child(5)  { left: 75%; animation-duration: 9s;  animation-delay: 1.5s; width: 6px; height: 6px; }
+    .particle:nth-child(6)  { left: 88%; animation-duration: 6s;  animation-delay: 3s; }
+    .particle:nth-child(7)  { left: 50%; animation-duration: 8s;  animation-delay: 4s;   width: 3px; height: 3px; }
+    .particle:nth-child(8)  { left: 15%; animation-duration: 7s;  animation-delay: 2.5s; width: 5px; height: 5px; }
+    .particle:nth-child(9)  { left: 33%; animation-duration: 10s; animation-delay: 1s; }
+    .particle:nth-child(10) { left: 70%; animation-duration: 6s;  animation-delay: 0s;   width: 3px; height: 3px; }
+
+    @keyframes float-up {
+      0%   { bottom: -10px; opacity: 0; transform: translateX(0) scale(1); }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.4; }
+      100% { bottom: 100%; opacity: 0; transform: translateX(20px) scale(0.5); }
+    }
+
+    /* BADGE */
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(22,163,74,0.12);
+      border: 1px solid rgba(22,163,74,0.45);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red-light);
+      margin-bottom: 20px;
+      animation: fade-in 0.6s ease both;
+    }
+    .badge-live .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    /* LOGO */
+    .hero-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 22vw, 120px);
+      line-height: 0.9;
+      letter-spacing: 4px;
+      background: linear-gradient(160deg, #86EFAC 0%, var(--red) 45%, var(--red-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fade-in 0.7s ease 0.1s both;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 4px;
+      margin-bottom: 28px;
+      animation: fade-in 0.7s ease 0.2s both;
+    }
+
+    /* BONO CARD */
+    .bono-card {
+      background: linear-gradient(135deg, #001A08 0%, #002510 50%, #001706 100%);
+      border: 1.5px solid var(--red);
+      border-radius: 20px;
+      padding: 24px 28px;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+      animation: fade-in 0.7s ease 0.3s both;
+      box-shadow: 0 0 40px rgba(22,163,74,0.18), inset 0 1px 0 rgba(22,163,74,0.18);
+    }
+
+    .bono-card::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: conic-gradient(transparent 0deg, rgba(22,163,74,0.07) 60deg, transparent 120deg);
+      animation: rotate-glow 8s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotate-glow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .bono-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--red-light);
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    .bono-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 14vw, 68px);
+      line-height: 1;
+      letter-spacing: 2px;
+      background: linear-gradient(160deg, #BBF7D0 0%, var(--red) 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .bono-fichas {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(22px, 7vw, 34px);
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.9);
+      margin-top: 2px;
+    }
+
+    .bono-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .bono-emoji {
+      position: absolute;
+      top: 18px; right: 22px;
+      font-size: 32px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50%       { transform: translateY(-6px) rotate(5deg); }
+    }
+
+    /* CTA BUTTON */
+    .cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1DB954 0%, var(--wa) 100%);
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 18px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.35), 0 2px 8px rgba(0,0,0,0.4);
+      animation: fade-in 0.7s ease 0.4s both, pulse-btn 2.5s ease-in-out 1.5s infinite;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%       { left: -100%; }
+      50%, 100% { left: 150%; }
+    }
+
+    @keyframes pulse-btn {
+      0%, 100% { box-shadow: 0 8px 32px rgba(37,211,102,0.35), 0 2px 8px rgba(0,0,0,0.4); }
+      50%       { box-shadow: 0 8px 48px rgba(37,211,102,0.55), 0 2px 8px rgba(0,0,0,0.4); }
+    }
+
+    .cta-btn:active { transform: scale(0.97); }
+
+    .cta-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .cta-sub {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 10px;
+      animation: fade-in 0.7s ease 0.5s both;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 40px 20px;
+      max-width: 480px;
+      margin: 0 auto;
+      animation: fade-in 0.7s ease 0.7s both;
+    }
+
+    .features-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--red-light);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 14px 18px;
+    }
+
+    .feature-icon { font-size: 24px; flex-shrink: 0; }
+
+    .feature-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.3;
+    }
+
+    .feature-text span {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+
+    /* PLATFORM BADGE */
+    .platform-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px 32px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .platform-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--dark2);
+      border: 1px solid rgba(22,163,74,0.3);
+      border-radius: 12px;
+      padding: 10px 20px;
+    }
+
+    .platform-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .platform-name {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--red-light);
+      letter-spacing: 1px;
+    }
+
+    /* PAYMENT METHODS */
+    .payments {
+      padding: 0 20px 32px;
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .payments-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .payment-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .payment-chip {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.5px;
+    }
+
+    /* STICKY CTA */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0) 100%);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sticky-cta .cta-btn {
+      animation: none;
+      max-width: 480px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px 20px 100px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      line-height: 1.6;
+    }
+
+    /* UTILS */
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <div class="badge-live">
+      <span class="dot"></span>
+      🍀 Atención 24hs · Argentina
+    </div>
+
+    <h1 class="hero-logo">TRÉBOL</h1>
+    <p class="hero-sub">Entretenimiento Online</p>
+
+    <!-- BONO CARD -->
+    <div class="bono-card">
+      <span class="bono-emoji">🍀</span>
+      <div class="bono-label">Beneficio de bienvenida</div>
+      <div class="bono-headline">100% EXTRA</div>
+      <div class="bono-fichas">Sin límite de monto</div>
+      <div class="bono-desc">En tu primer depósito · Juegos originales</div>
+    </div>
+
+    <!-- CTA PRINCIPAL -->
+    <a
+      href="#"
+      class="cta-btn"
+      id="cta-whatsapp"
+      onclick="trackContactar()"
+      target="_blank"
+      rel="noopener"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      Creá tu usuario gratis
+    </a>
+
+    <p class="cta-sub">🎰 Sin costo · Registro en minutos · Bono inmediato</p>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <h2 class="features-title">¿Por qué Trébol?</h2>
+    <div class="feature-list">
+      <div class="feature-item">
+        <span class="feature-icon">🎁</span>
+        <div class="feature-text">
+          Beneficio del 100% sin límite de monto
+          <span>Se acredita automático en tu primer depósito</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-text">
+          Registro en menos de 2 minutos
+          <span>Sin papeles, sin espera</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🏆</span>
+        <div class="feature-text">
+          Juegos originales verificados
+          <span>La mejor selección de entretenimiento</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🎮</span>
+        <div class="feature-text">
+          Atención 24hs por WhatsApp
+          <span>Soporte inmediato, siempre disponible</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM BADGE -->
+  <div class="platform-badge">
+    <div class="platform-inner">
+      <span class="platform-label">Plataforma</span>
+      <span class="platform-name">Ganamos</span>
+    </div>
+  </div>
+
+  <!-- PAYMENT METHODS -->
+  <section class="payments">
+    <div class="payments-title">Métodos de pago</div>
+    <div class="payment-logos">
+      <div class="payment-chip">Mastercard</div>
+      <div class="payment-chip">MercadoPago</div>
+      <div class="payment-chip">Rapipago</div>
+      <div class="payment-chip">Pago Fácil</div>
+    </div>
+  </section>
+
+  <!-- STICKY CTA -->
+  <div class="sticky-cta">
+    <a
+      href="#"
+      class="cta-btn"
+      onclick="trackContactar()"
+      target="_blank"
+      rel="noopener"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      Registrate gratis ahora
+    </a>
+  </div>
+
+  <footer>
+    Trébol · Entretenimiento Online · Argentina<br>
+    +18 · Jugá responsablemente
+  </footer>
+
+  <script>
+    // ===== NÚMERO DE WHATSAPP — CAMBIAR POR LANDING =====
+    const WA_NUMBER = '5492617637659'; // ← reemplazar con el número de Trébol
+    const WA_MESSAGE = encodeURIComponent('Hola, quiero registrarme en Trébol y activar mi beneficio de bienvenida 🎁');
+    const WA_URL = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
+
+    document.querySelectorAll('.cta-btn').forEach(btn => {
+      btn.href = WA_URL;
+    });
+
+    // ===== PIXEL EVENT =====
+    function trackContactar() {
+      if (typeof fbq !== 'undefined') {
+        fbq('trackCustom', 'ClickWhatsApp');
+      }
+    }
+
+    let scrollTracked = false;
+    window.addEventListener('scroll', function () {
+      if (!scrollTracked) {
+        const scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+        if (scrollPct > 0.5) {
+          scrollTracked = true;
+          if (typeof fbq !== 'undefined') {
+            fbq('trackCustom', 'ScrollDepth50');
+          }
+        }
+      }
+    });
+
+    document.querySelectorAll('.cta-btn').forEach(btn => {
+      btn.addEventListener('touchstart', function() {
+        this.style.transform = 'scale(0.97)';
+      }, { passive: true });
+      btn.addEventListener('touchend', function() {
+        this.style.transform = '';
+      }, { passive: true });
+    });
+  </script>
+
+</body>
+</html>
